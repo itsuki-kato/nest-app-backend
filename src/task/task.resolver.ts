@@ -1,6 +1,7 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { TaskService } from './task.service';
 import { Task } from './model/task.model';
+import { CreateTaskInput } from './dto/createTask.input';
 
 @Resolver()
 export class TaskResolver {
@@ -18,12 +19,8 @@ export class TaskResolver {
     // post,put,delteは@mutationデコレータ.引数に戻り値の型を定義する.
     // 関数で受け取る引数は@Argsを使う.
     @Mutation(() => Task)
-    createTask(
-        @Args('name') name: string, 
-        @Args('dueDate') dueDate: string, 
-        @Args('description', { nullable: true }) description: string
-    ): Task {
+    createTask(@Args('createTaskInput') CreateTaskInput: CreateTaskInput): Task {
         // serviceで定義した関数を呼び出し
-        return this.taskService.createTask(name, dueDate, description);
+        return this.taskService.createTask(CreateTaskInput);
     }
 }
