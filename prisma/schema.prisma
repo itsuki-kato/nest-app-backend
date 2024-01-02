@@ -11,7 +11,7 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model Task{
+model Task {
 	id Int @id @default(autoincrement())
 	// postgreはStringはtext型に変換されるためvarcharを指定.
 	name String @db.VarChar(255)
