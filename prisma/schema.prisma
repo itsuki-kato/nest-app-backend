@@ -15,9 +15,10 @@ model User {
     id        Int      @id @default(autoincrement())
     name      String   @db.VarChar(255)
     password  String   @db.VarChar(255)
+    email     String   @db.VarChar(255)
     createdAt DateTime @default(now()) @db.Timestamp(0)
     updatedAt DateTime @updatedAt @db.Timestamp(0)
-	// リレーションの定義(1：N)
+    // リレーションの定義(1：N)
     task      Task[]
 }
 
@@ -31,9 +32,9 @@ model Task {
     // db.Timestam(0)とすると秒まで表示する.
     createdAt   DateTime @default(now()) @db.Timestamp(0)
     updatedAt   DateTime @updatedAt @db.Timestamp(0)
-	// Userとのリレーション外部キー
+    // Userとのリレーション外部キー
     userId      Int
-	// リレーションの定義
+    // リレーションの定義
     user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
