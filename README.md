@@ -35,6 +35,15 @@ $ npx prisma migrate dev --name [name]
 
 # Open Prisma web tool
 $ npx prisma studio
+
+#Generate Module
+$ nest g module [Model]
+
+#Generate Resolver
+$ nest g resolver [Model] --no-spec
+
+#Generate Service
+$ nest g service [Model] --no-spec
 ```
 
 ## GraphQL Playgraound
