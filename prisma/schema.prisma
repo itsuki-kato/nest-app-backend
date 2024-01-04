@@ -12,19 +12,27 @@ datasource db {
 }
 
 model Task {
-	id Int @id @default(autoincrement())
-	// postgreはStringはtext型に変換されるためvarcharを指定.
-	name String @db.VarChar(255)
-	dueDate String @db.VarChar(255)
-	status Status @default(NOT_STARTED)
-	description String?
-	// db.Timestam(0)とすると秒まで表示する.
-	createdAt DateTime @default(now()) @db.Timestamp(0)
-	updatedAt DateTime @updatedAt @db.Timestamp(0)
+    id          Int      @id @default(autoincrement())
+    // postgreはStringはtext型に変換されるためvarcharを指定.
+    name        String   @db.VarChar(255)
+    dueDate     String   @db.VarChar(255)
+    status      Status   @default(NOT_STARTED)
+    description String?
+    // db.Timestam(0)とすると秒まで表示する.
+    createdAt   DateTime @default(now()) @db.Timestamp(0)
+    updatedAt   DateTime @updatedAt @db.Timestamp(0)
 }
 
 enum Status {
-	NOT_STARTED
-	IN_PROGRESS
-	COMPLETED
+    NOT_STARTED
+    IN_PROGRESS
+    COMPLETED
+}
+
+model User {
+    id        Int      @id @default(autoincrement())
+    name      String   @db.VarChar(255)
+    password  String   @db.VarChar(255)
+    createdAt DateTime @default(now()) @db.Timestamp(0)
+    updatedAt DateTime @updatedAt @db.Timestamp(0)
 }
