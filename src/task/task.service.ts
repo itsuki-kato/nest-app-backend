@@ -12,18 +12,23 @@ export class TaskService {
 
   // タスク一覧の取得
   // DB操作は非同期処理のため戻り値はPromiseになる
-  async getTasks(): Promise<Task[]> {
-    return await this.prismaService.task.findMany();
+  async getTasks(userId: number): Promise<Task[]> {
+    return await this.prismaService.task.findMany({
+			where: {
+				userId
+			}
+		});
   }
 
   // タスクの登録
   async createTask(createTaskInput: CreateTaskInput): Promise<Task> {
-    const { name, dueDate, description } = createTaskInput;
+    const { name, dueDate, description, userId } = createTaskInput;
     return await this.prismaService.task.create({
       data: {
         name,
         dueDate,
         description,
+				userId,
       },
     });
   }

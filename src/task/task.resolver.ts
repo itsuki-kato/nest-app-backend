@@ -13,9 +13,11 @@ export class TaskResolver {
   // getは@queryデコレータ.引数に戻り値の型を定義する.
   // 第二引数のnullableをitemsにすると要素が存在しない時に空配列、itemsAndListはnullを返す.
   @Query(() => [TaskModel], { nullable: 'items' })
-  async getTasks(): Promise<Task[]> {
+  async getTasks(
+    @Args('userId', { type: () => Int }) userId: number,
+  ): Promise<Task[]> {
     // serviceに定義した関数を呼び出し
-    return await this.taskService.getTasks();
+    return await this.taskService.getTasks(userId);
   }
 
   // post,put,delteは@mutationデコレータ.引数に戻り値の型を定義する.

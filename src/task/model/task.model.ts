@@ -21,6 +21,9 @@ export class Task {
   @Field({ nullable: true })
   description: string;
 
+  @Field(() => Int)
+  userId: number;
+
   @Field()
   createdAt: Date;
 
